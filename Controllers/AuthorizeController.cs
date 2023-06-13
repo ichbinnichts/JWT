@@ -42,7 +42,7 @@ namespace JWT.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
             await _signInManager.SignInAsync(user, false);
-            return Ok();
+            return Ok(GenerateToken(model));
         }
 
         [HttpPost("login")]
@@ -56,7 +56,7 @@ namespace JWT.Controllers
                 ModelState.AddModelError(string.Empty, "Invalid login");
                 return BadRequest(ModelState);
             }
-            return Ok();
+            return Ok(GenerateToken(userInfo));
         }
         private UserToken GenerateToken(UserDTO userInfo)
         {
