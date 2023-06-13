@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using JWT.Context;
+using JWT.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using JWT.Context;
-using JWT.Models;
 
 namespace JWT.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
@@ -21,7 +16,7 @@ namespace JWT.Controllers
             _context = context;
         }
 
-        // GET: api/Products
+        // GET: Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
@@ -32,7 +27,7 @@ namespace JWT.Controllers
             return await _context.Products.ToListAsync();
         }
 
-        // GET: api/Products/5
+        // GET: Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
@@ -50,7 +45,7 @@ namespace JWT.Controllers
             return product;
         }
 
-        // PUT: api/Products/5
+        // PUT: Products/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduct(int id, Product product)
@@ -81,7 +76,7 @@ namespace JWT.Controllers
             return NoContent();
         }
 
-        // POST: api/Products
+        // POST: Products
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
@@ -96,7 +91,7 @@ namespace JWT.Controllers
             return CreatedAtAction("GetProduct", new { id = product.Id }, product);
         }
 
-        // DELETE: api/Products/5
+        // DELETE: Products/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
