@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "http": {
+    "JWT": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
