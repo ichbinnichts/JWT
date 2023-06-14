@@ -1,6 +1,7 @@
 ﻿using JWT.Context;
 using JWT.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace JWT.Controllers
     [Authorize(AuthenticationSchemes = "Bearer")]
     [Route("[controller]")]
     [ApiController]
+    [EnableCors("AllowApiRequest")]
     public class ProductsController : ControllerBase
     {
         private readonly AppDbContext _context;
