@@ -51,12 +51,16 @@ namespace JWT.Controllers
             if (!ModelState.IsValid) return BadRequest(ModelState.Values.SelectMany(e => e.Errors));
             var result = await _signInManager.PasswordSignInAsync(userInfo.Email,
                 userInfo.Password, isPersistent: false, lockoutOnFailure: false);
-            if (!result.Succeeded)
+            if (result.Succeeded)
+            {
+                return Ok(GenerateToken(userInfo));
+            }
+            else
             {
                 ModelState.AddModelError(string.Empty, "Invalid login");
                 return BadRequest(ModelState);
             }
-            return Ok(GenerateToken(userInfo));
+            
         }
         private UserToken GenerateToken(UserDTO userInfo)
         {
